@@ -82,15 +82,63 @@ Cast.destroy_all
 Studio.destroy_all
 Actor.destroy_all
 
-
 # Generate models and tables, according to the domain model.
 # TODO!
 
-# Commands executed in terminal:
+# Commands executed in terminal to create models:
 # rails generate model Movie 
 # rails generate model Studio
-# rails generate model Actor - was not necessary after all
+# rails generate model Actor
 # rails generate model Cast 
+
+# Modify the models under db/migrate:
+
+# Movies
+# class CreateMovies < ActiveRecord::Migration[7.1]
+#   def change
+#     create_table :movies do |t|
+#       t.string "title"
+#       t.integer "year"
+#       t.string "mpaa_rating"
+#       t.string "studio"
+#       t.timestamps
+#     end
+#   end
+# end
+
+# Studios
+# class CreateStudios < ActiveRecord::Migration[7.1]
+#   def change
+#     create_table :studios do |t|
+#       t.string "name"
+#       t.timestamps
+#     end
+#   end
+# end
+
+# Actors
+# class CreateActors < ActiveRecord::Migration[7.1]
+#   def change
+#     create_table :actors do |t|
+#       t.string "name"
+#       t.timestamps
+#     end
+#   end
+# end
+
+# Casts
+# class CreateCasts < ActiveRecord::Migration[7.1]
+#   def change
+#     create_table :casts do |t|
+#       t.string "movie"
+#       t.string "actor"
+#       t.string "role"
+#       t.timestamps
+#     end
+#   end
+# end
+
+# Migrate the databases, command executed in Terminal:
 
 # rails db:migrate
 
@@ -279,11 +327,6 @@ movies = Movie.all
 for movie in movies
   puts "#{movie.title.ljust(25)} #{movie.year} #{movie.mpaa_rating.ljust(10)} #{movie.studio}"
 end
-
-# studios = Studio.all
-# for studio in studios
-#   puts "#{studio.name}"
-# end
 
 # Prints a header for the cast output
 puts ""
